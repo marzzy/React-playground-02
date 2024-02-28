@@ -1,4 +1,6 @@
 import data from './mockData';
+import Child from './Child';
+import './tree01.css'
 
 export function Tree01(props) {
   const currentItem = props.currentItem || Object.entries(data)[0];
@@ -8,24 +10,29 @@ export function Tree01(props) {
 
   return (
     <div className={`wrapper wrapper-level${level}`}>
+      <section class={`children children-left children-level${level} flex`}>
+      {childrenList.length > 0 && childrenList.map((childData, index) => {
+        if(index%2) return (
+          <Child key={childData[0]} isLeftSideChild level={level} childData={childData} />
+        )
+        return null
+      })}
+      </section>
       <header>
         {itemKey} - level: {level}
         <br />
-        <span style={{maxWidth: '200px'}}>
+        <span className="description">
           {itemData?.description}
         </span>
         <br />
       </header>
-      <section class={`children children-level${level}`} style={{display: "flex"}}>
-      {childrenList.length > 0 && childrenList.map((childData) => (
-        <div style={{marginLeft: "30px"}} key={childData[0]} className='child'>
-          | <br />| <br />
-          <span style={{display: "flex"}}>
-            <span style={{textWrap: "nowrap"}}>--&gt;</span>
-            <Tree01 currentItem={childData} level={level+1} />
-          </span>
-        </div>
-      ))}
+      <section class={`children children-level${level} flex`} >
+      {childrenList.length > 0 && childrenList.map((childData, index) => {
+        if(index%2) return null 
+        return (
+          <Child key={childData[0]} level={level} childData={childData} />
+        )
+      })}
       </section>
     </div>
   )
