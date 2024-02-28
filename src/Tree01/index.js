@@ -7,19 +7,26 @@ export function Tree01(props) {
   const childrenList = Object.hasOwn(itemData, 'children') ? Object.entries(itemData.children) : [];
 
   return (
-    <div className='root'>
-      <section>
+    <div className={`wrapper wrapper-level${level}`}>
+      <header>
         {itemKey} - level: {level}
         <br />
-        {itemData?.description}
+        <span style={{maxWidth: '200px'}}>
+          {itemData?.description}
+        </span>
         <br />
-      </section>
+      </header>
+      <section class={`children children-level${level}`} style={{display: "flex"}}>
       {childrenList.length > 0 && childrenList.map((childData) => (
         <div style={{marginLeft: "30px"}} key={childData[0]} className='child'>
-          <div>==&gt; </div>
-          <Tree01 currentItem={childData} level={level+1} />
+          | <br />| <br />
+          <span style={{display: "flex"}}>
+            <span style={{textWrap: "nowrap"}}>--&gt;</span>
+            <Tree01 currentItem={childData} level={level+1} />
+          </span>
         </div>
       ))}
+      </section>
     </div>
   )
 }
