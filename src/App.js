@@ -1,4 +1,5 @@
-import { Tree01 } from "./Tree01";
+// import { Tree01 } from "./Tree01";
+import { Tree02 } from "./Tree02";
 
 function App() {
   return (
@@ -6,7 +7,7 @@ function App() {
       <header className="App-header">
         Tree of life
       </header>
-      <Tree01 />
+      <Tree02 />
     </div>
   );
 }
