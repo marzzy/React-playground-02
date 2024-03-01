@@ -1,21 +1,7 @@
-.wrapper-level0 > header{
+.root-wrapper > header{
   background-color: #734b0f;
   color: white
-
 } 
-
-.wrapper-level1 {
-  background-color: rgb(0, 255, 8);
-}
-
-.wrapper-level2 {
-  background-color: green;
-  color: white
-}
-
-.wrapper-level3 {
-  background-color: rgb(1, 200, 91);
-}
 
 .wrapper {
   display: flex;

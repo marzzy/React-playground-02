@@ -6,21 +6,25 @@ const data = {
         "description": "Single-celled microorganisms that lack a nucleus.",
         "habitat": ["SOIL", "WATER", "LIVING_ORGANISMS"],
         "diet": ["AUTOTROPH", "HETEROTROPH"],
+        color: '#2E8B57',
         "fun_fact": "Some bacteria can survive in extreme conditions such as boiling water or acidic environments.",
         children: {
           "Proteobacteria": {
+            color: '#32CD32',
             "description": "A major group of bacteria including many pathogens and symbionts.",
             "habitat": ["SOIL", "WATER"],
             "diet": ["AUTOTROPH", "HETEROTROPH"],
             "fun_fact": "Some Proteobacteria have versatile metabolic capabilities, allowing them to thrive in various environments.",
             children: {
               "Alphaproteobacteria": {
+                color: '#00FF00',
                 "description": "A class of Proteobacteria including many species capable of nitrogen fixation.",
                 "habitat": ["SOIL", "WATER", "PLANT_ROOTS"],
                 "diet": ["AUTOTROPH", "HETEROTROPH"],
                 "fun_fact": "Some Alphaproteobacteria form symbiotic relationships with plants, helping them fix nitrogen."
               },
               "Betaproteobacteria": {
+                color: '#00FF7F',
                 "description": "A class of Proteobacteria containing many soil and water bacteria.",
                 "habitat": ["SOIL", "WATER"],
                 "diet": ["AUTOTROPH", "HETEROTROPH"],
@@ -30,6 +34,7 @@ const data = {
           },
           "Firmicutes": {
             "description": "A phylum of bacteria with a thick, rigid cell wall.",
+            color: '#98FB98',
             "habitat": ["SOIL", "WATER", "GI_TRACT"],
             "diet": ["AUTOTROPH", "HETEROTROPH"],
             "fun_fact": "Some Firmicutes are used in food production processes such as cheese and yogurt making."
