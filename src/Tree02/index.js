@@ -1,5 +1,6 @@
+import Child from './Child';
 import data from './mockData';
-// import './tree02.css'
+import './tree02.css'
 import { useState } from 'react';
 
 function getInitialBackgroundColor(itemDefaultColor) {
@@ -11,29 +12,20 @@ function getInitialBackgroundColor(itemDefaultColor) {
 export function Tree02(props) {
   const currentItemId = props.currentItemId || data.rootId;
   const currentItem = data.entities[currentItemId]
-  const [bgColor, setBgColor] = useState(() => getInitialBackgroundColor());
+  const [bgColor, setBgColor] = useState(() => getInitialBackgroundColor(currentItem.color));
+  const level = props.level || 0;
 
   const handleColorChange = (e) => {
     setBgColor(e.target.value)
   }
 
   return (
-    <div style={{background: bgColor}}>
-      <section className={`children-left`}>
-      {/* children-left */}
+    <div className={`wrapper ${level === 0 ? "root-wrapper": ''}`} style={{background: bgColor}}>
+      <section className={`children `}>
       {currentItem.childrenIds && currentItem.childrenIds.map((childId, index) => {
         if(index%2) return (
           <div key={childId}>
-            <div className='child'>
-              <div className="bar">
-                {/* | <br />| <br /> */}
-              </div>
-              <span className="flex">
-                {/* {!isLeftSideChild && <span className="arrow" >--{'>'}</span>} */}
-                <Tree02 currentItemId={childId} />
-                {/* <span className="arrow">{'<'}--</span> */}
-              </span>
-            </div>
+            <Child childId={childId} level={level} />
           </div>
         )
         return null
@@ -42,32 +34,23 @@ export function Tree02(props) {
       <header className="flex">
         <div>
           <div>
-            {currentItem.id} - level: ????
+            {currentItem.id} - level: {level}
           </div>
           <div className="description">
             {currentItem?.description}
           </div>
         </div>
         <div>
-          <input type="color" id="selectedItemColor" value={bgColor} onChange={handleColorChange}/>
-          <label for="selectedItemColor">Branch Color</label>
+          <input type="color" name="selectedItemColor" value={bgColor} onChange={handleColorChange}/>
+          <label htmlFor="selectedItemColor">Branch Color</label>
         </div>
       </header>
-      <section className={`children-right`} >
-        {/* children-right */}
+      <section className={`children `} >
       {currentItem.childrenIds && currentItem.childrenIds.map((childId, index) => {
         if(index%2) return null 
         return (
           <div key={childId}>
-            <div className='child'>
-              <div className="bar">
-                {/* | <br />| <br /> */}
-              </div>
-              <span className="flex">
-                {/* <span className="arrow" >--{'>'}</span> */}
-                <Tree02 currentItemId={childId} />
-              </span>
-            </div>
+            <Child childId={childId} level={level} />
           </div>
         )
       })}
